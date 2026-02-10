@@ -1,0 +1,11 @@
+Pattern are very essential for dsa and competitive programming.
+It help in understanding the structure of the problem and finding a solution.
+
+Patterns contains loops:
+outer loop: controls the number of rows
+inner loop: controls the number of columns
+printing the pattern is done in the inner loop.
+
+Note: Observe the symmetry of the patterns.
+
+
