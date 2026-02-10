@@ -1,0 +1,182 @@
+#include <bits/stdc++.h> // this includes all standard C++ libraries gcc compiler
+
+string.h // this includes all string functions
+math.h // this includes all math functions
+algorithm // this includes all algorithms like sort, reverse, etc.
+vector // this includes the vector container
+set // this includes the set container
+map // this includes the map container
+queue // this includes the queue container
+stack // this includes the stack container
+list // this includes the list container
+deque // this includes the deque container
+bitset // this includes the bitset container
+utility // this includes the pair container
+iomanip // this includes functions to manipulate input/output format
+
+using namespace std; // this allows us to use standard library functions without prefixing them with std::
+std // this is used to refer to the standard namespace explicitly
+
+STL divided into 4 parts:
+1. Algorithms
+2. Containers
+3. Iterators
+4. Function Objects (Functors)
+
+# pair // a container that holds two values of different types
+pair <int, int> p; // declaring a pair of integers
+p.first = 10; // accessing the first element of the pair
+p.second = 20; // accessing the second element of the pair
+p = make_pair(30, 40); // creating a pair using make_pair function
+
+# vector // a dynamic array that can grow and shrink in size
+vector<int> v; // declaring a vector of integers
+v.push_back(10); // adding an element to the end of the vector
+v.emplace_back(30); // constructs an element in place at the end of the vector{faster than push_back}
+v.pop_back(); // removing the last element of the vector
+v.size(); // returns the number of elements in the vector
+v.clear(); // removes all elements from the vector
+v.begin(); // returns an iterator to the first element of the vector
+v.end(); // returns an iterator to the element following the last element of the vector
+v.insert(v.begin() + 1, 20); // inserts 20 at index
+v.erase(v.begin() + 1); // removes the element at index 1
+v.resize(5); // resizes the vector to hold 5 elements
+v.empty(); // returns true if the vector is empty
+v.at(2); // returns the element at index 2 with bounds checking
+v.front(); // returns the first element of the vector
+v.back(); // returns the last element of the vector
+v.assign(5, 10); // assigns 5 elements with value 10 to the vector
+
+vector<int> v(2,20) // {20,20} // vector of size 2 with all elements initialized to 20
+
+for(int i=0; i<v.size(); i++) // iterating through the vector using index 
+for(auto it=v.begin(); it!=v.end(); it++) // iterating through the vector
+for(vector<int>::iterator it=v.begin(); it!=v.end(); it++) // iterating through the vector using iterator
+
+# list // a doubly linked list that allows non-contiguous memory allocation
+list<int> l; // declaring a list of integers
+l.push_back(10); // adding an element to the end of the list
+l.push_front(20); // adding an element to the front of the list
+l.pop_back(); // removing the last element of the list
+l.pop_front(); // removing the first element of the list
+l.size(); // returns the number of elements in the list
+l.clear(); // removes all elements from the list
+l.begin(); // returns an iterator to the first element of the list
+l.end(); // returns an iterator to the element following the last element of the list
+l.insert(l.begin(), 30); // inserts 30 at the beginning of the list
+l.erase(l.begin()); // removes the first element of the list
+
+# stack O(1) // a container that follows the Last In First Out (LIFO) principle
+stack<int> s; // declaring a stack of integers
+s.push(10); // adding an element to the top of the stack
+s.pop(); // removing the top element of the stack
+s.top(); // returns the top element of the stack
+s.size(); // returns the number of elements in the stack
+s.empty(); // returns true if the stack is empty
+s.emplace(20); // constructs an element in place at the top of the stack
+
+# queue O(1) // a container that follows the First In First Out (FIFO) principle
+queue<int> q; // declaring a queue of integers
+q.push(10); // adding an element to the back of the queue
+q.pop(); // removing the front element of the queue
+q.front(); // returns the front element of the queue
+q.back(); // returns the back element of the queue
+q.size(); // returns the number of elements in the queue
+q.empty(); // returns true if the queue is empty
+q.emplace(20); // constructs an element in place at the back of the queue
+
+# priority_queue O(log n) // a container that follows the priority order
+priority_queue<int> pq; // declaring a max-heap priority queue of integers
+pq.push(10); // adding an element to the priority queue
+pq.pop(); // removing the top element of the priority queue
+pq.top(); // returns the top element of the priority queue
+pq.size(); // returns the number of elements in the priority queue
+pq.empty(); // returns true if the priority queue is empty
+
+# set O(log n) // a container that stores unique elements in a sorted order
+set<int> st; // declaring a set of integers
+st.insert(10); // adding an element to the set
+st.erase(10); // removing an element from the set
+st.find(10); // returns an iterator to the element if found, else returns st.end
+st.count(10); // returns 1 if the element is found, else returns 0
+st.lower_bound(10); // returns an iterator to the first element not less than 10
+st.upper_bound(10); // returns an iterator to the first element greater than 10
+
+# multiset O(log n) // a container that stores multiple occurrences of elements in a sorted order
+multiset<int> mst; // declaring a multiset of integers
+mst.insert(10); // adding an element to the multiset
+mst.erase(10); // removing all occurrences of an element from the multiset
+mst.find(10); // returns an iterator to the first occurrence of the element if found,
+mst.count(10); // returns the number of occurrences of the element
+mst.lower_bound(10); // returns an iterator to the first element not less than 10
+mst.upper_bound(10); // returns an iterator to the first element greater than 10
+mst.erase(mst.find(10)); // removes only one occurrence of the element
+mst.erase(mst.find(10), mst.find(20)); // removes all occurrences of elements in the range [10, 20)
+
+# unordered_set O(1) // a container that stores unique elements in an unordered manner
+unordered_set<int> ust; // declaring an unordered set of integers
+ust.insert(10); // adding an element to the unordered set
+ust.erase(10); // removing an element from the unordered set
+ust.find(10); // returns an iterator to the element if found, else returns ust.end
+ust.count(10); // returns 1 if the element is found, else returns 0
+
+# map O(log n) // a container that stores key-value pairs in a sorted order based on keys
+map<int, int> mp; // declaring a map with integer keys and integer values
+mp[10] = 20; // adding a key-value pair to the map
+mp.insert({30, 40}); // adding a key-value pair using insert function
+mp.erase(10); // removing a key-value pair from the map using key
+mp.find(10); // returns an iterator to the key-value pair if found, else returns
+mp.count(10); // returns 1 if the key is found, else returns 0
+mp.lower_bound(10); // returns an iterator to the first key not less than 10
+mp.upper_bound(10); // returns an iterator to the first key greater than 10
+mp.size(); // returns the number of key-value pairs in the map
+mp.clear(); // removes all key-value pairs from the map
+mp.empty(); // returns true if the map is empty
+
+#multimap O(log n) // a container that stores multiple key-value pairs in a sorted order based on keys
+multimap<int, int> mmp; // declaring a multimap with integer keys and integer
+mmp.insert({10, 20}); // adding a key-value pair to the multimap
+mmp.insert({10, 30}); // adding another key-value pair with the same key
+mmp.erase(10); // removing all key-value pairs with the key 10
+mmp.find(10); // returns an iterator to the first key-value pair with the key 10 if found, else returns
+mmp.count(10); // returns the number of key-value pairs with the key 10
+mmp.lower_bound(10); // returns an iterator to the first key not less than 10
+mmp.upper_bound(10); // returns an iterator to the first key greater than 10
+mmp.size(); // returns the number of key-value pairs in the multimap
+mmp.clear(); // removes all key-value pairs from the multimap
+
+# unordered_map O(1) // a container that stores key-value pairs in an unordered manner
+unordered_map<int, int> ump; // declaring an unordered map with integer keys and integer values
+ump[10] = 20; // adding a key-value pair to the unordered map
+ump.insert({30, 40}); // adding a key-value pair using insert function
+ump.erase(10); // removing a key-value pair from the unordered map using key
+ump.find(10); // returns an iterator to the key-value pair if found, else returns ump.end
+ump.count(10); // returns 1 if the key is found, else returns 0
+ump.size(); // returns the number of key-value pairs in the unordered map
+ump.clear(); // removes all key-value pairs from the unordered map
+ump.empty(); // returns true if the unordered map is empty
+
+# deque O(1) // a double-ended queue that allows insertion and deletion from both ends
+deque<int> dq; // declaring a deque of integers
+dq.push_back(10); // adding an element to the back of the deque
+dq.push_front(20); // adding an element to the front of the deque
+dq.pop_back(); // removing the last element of the deque
+dq.pop_front(); // removing the first element of the deque
+dq.size(); // returns the number of elements in the deque
+dq.clear(); // removes all elements from the deque
+
+
+# algorithms // functions that operate on containers to perform specific tasks
+sort(v.begin(), v.end()); // sorts the vector in ascending order
+sort(v.begin(), v.end(), greater<int>()); // sorts the vector in descending order
+reverse(v.begin(), v.end()); // reverses the elements of the vector
+max_element(v.begin(), v.end()); // returns an iterator to the maximum element in the vector
+min_element(v.begin(), v.end()); // returns an iterator to the minimum element in the vector
+accumulate(v.begin(), v.end(), 0); // returns the sum of all elements in the vector
+count(v.begin(), v.end(), 10); // returns the number of occurrences of 10 in the vector
+find(v.begin(), v.end(), 10); // returns an iterator to the first occurrence of 10 if found, else returns v.end
+binary_search(v.begin(), v.end(), 10); // returns true if 10 is found in the sorted vector, else returns false
+lower_bound(v.begin(), v.end(), 10); // returns an iterator to the first element not less than 10
+upper_bound(v.begin(), v.end(), 10); // returns an iterator to the first element greater than 10
+next_permutation(v.begin(), v.end()); // generates the next lexicographical permutation of the vector
+prev_permutation(v.begin(), v.end()); // generates the previous lexicographical permutation of the vector
