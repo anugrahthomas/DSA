@@ -1,0 +1,195 @@
+recurrsion -> function that calls itself repeatedly until a base case is met
+base case -> condition that stops the recursion
+recursive function -> function that calls itself
+recursive case -> condition that leads to the next recursive call
+
+basic idea of Recurrsion:
+recursive_function(params) {
+    if(base_case == satisfied) {
+        return base_case_value;
+    }
+    // process current state
+    return recursive_function(modified_params);
+}
+
+SOME TERMS:
+recurrsion stack space -> memory used by the recursive calls
+activation record -> record of the function call in the stack
+stack overflow -> error that occurs when the stack space is exceeded
+
+
+Backtracking -> algorithmic technique for solving problems incrementally
+Backtracking =  recurrsion + constraint satisfaction/choice
+basic idea of Backtracking
+solve(choices, partial_solution) {
+    if(partial_solution is complete) {
+        save(partial_solution);
+        return;
+    }
+    for(each choice of choices) {
+        if(choice is not valid) {
+            continue;
+        }
+        make(choice);
+        solve(choices, partial_solution);
+        unmake(choice);
+    }
+
+}
+
+SOME TERMS:
+- solution space -> all possible configurations for a problem
+- constraint -> condition that must be satisfied for a solution to be valid
+- pruning -> eliminating branches of the solution space that cannot lead to a valid solution
+- partial solution -> a solution that is not yet complete but can be extended
+- complete solution -> a solution that satisfies all constraints of the problem
+- state space tree -> tree representation of all possible states in the solution space
+- choice point -> a point in the algorithm where a decision is made
+- dead end -> a state where no further progress can be made towards a solution
+- backtrack -> returning to a previous choice point to explore alternative options
+- forward checking -> technique to reduce the search space by checking constraints ahead of time
+
+EXAMPLES OF BACKTRACKING PROBLEMS:
+- N-Queens Problem
+- Sudoku Solver
+- Hamiltonian Path Problem
+- Subset Sum Problem
+- Graph Coloring Problem
+- Knight's Tour Problem
+- Crossword Puzzle Solver
+
+
+// Backtracking is DFS with undoing decisions to explore all possible configurations.
+// Permutations track positions using a used array, while combinations track indices to enforce order and avoid duplicates.
+- Permutations: arrangments of items (use a used array to track positions) {order matters}
+- Combinations: selections of items (use index to avoid duplicates) {order not matters}
+
+Combination: LC-77 'index based ordering to avoid duplicates'
+void solve(int index, int n, int k, vector<int> &temp, vector<vector<int>> &ans) {
+    if(k == temp.size()) {
+        ans.push_back(temp);
+        return;
+    }
+
+    for(int i=index; i<=n; i++) {
+        temp.push_back(i);
+        solve(i+1, n, k, temp, ans);
+        temp.pop_back();
+    }
+}
+
+Permutation: LC-46 'used array to track positions'
+void solve(vector<int> &nums, vector<int> &temp, vector<bool> &used, vector<vector<int>> &ans) {
+    if(temp.size() == nums.size()) {
+        ans.push_back(temp);
+        return;
+    }
+
+    for(int i=0; i<nums.size(); i++){
+        if(used[i]) continue; // if used then skip
+        used[i] = true;
+        temp.push_back(nums[i]);
+        solve(nums, temp, used, ans);
+        temp.pop_back();
+        used[i] = false;
+    }
+}
+
+
+🧩 When should you use recursion?
+Use recursion when:
+- Problem naturally breaks into smaller subproblems
+- Tree / graph traversal
+- “Do this for rest of array/string”
+- Depth-first logic
+Examples:
+• Tree DFS
+• Linked list reversal
+• Divide & conquer
+• DP recursion (memoization)
+
+🧩 When should you use backtracking?
+- Use backtracking when:
+- You must try all possible choices
+- You need all solutions or any valid solution
+- Constraints prune paths
+Keywords that scream backtracking:
+- “All possible”
+- “Generate”
+- “Find all paths”
+- “Place / arrange / choose”
+- “Valid / invalid”
+Examples:
+• N-Queen
+• Rat in Maze
+• Sudoku
+• Palindrome Partition
+• Subsets / Permutations
+• Graph coloring
+
+⚡️ How to optimize Recursion
+1. Avoid repeated work DP- (Tabulation or Memoization)
+- If same state repeats → cache it.
+- Used when:
+- Overlapping subproblems
+- Counting / optimization problems
+Example:
+• Fibonacci
+• DP on grid
+• Subset sum
+2. Tail recursion optimization
+- If last operation is recursive call → convert to iteration.
+- Saves stack space.
+
+
+⚡️ How to optimize Backtracking
+1. Pruning (MOST IMPORTANT)
+- Stop early when invalid.
+Examples:
+• N-Queen → diagonal check
+• Maze → obstacle / visited
+• Graph coloring → adjacency conflict
+• Less tree explored = faster.
+
+2. Change representation
+- Board scan ❌
+- Arrays / bitmask ✅
+Examples:
+• N-Queen: arrays → bitmask
+• Sudoku: boolean arrays
+• Subsets: bitmask
+
+3. Symmetry optimization
+- If problem is symmetric:
+- Explore half
+- Multiply result
+Example:
+• N-Queen first row symmetry
+
+4. Order choices smartly
+- Try most constrained choices first.
+Examples:
+• Sudoku → fill cell with least options
+• Graph coloring → highest degree vertex first
+
+🧠 Recursion vs DP vs Backtracking (VERY IMPORTANT)
+Situation	                        Use
+- One optimal answer	            DP
+- Count ways	                    DP / recursion
+- All solutions	                    Backtracking
+- Any valid solution	            Backtracking
+- No cycles	                        DP
+- Cycles possible	                Backtracking + visited
+
+Most pattens of backtracking:
+- decision on index
+- permutation/combination
+- subset
+- graph traversal
+- partitioning
+
+Most patterns of recursion:
+- divide and conquer
+- tree traversal
+- linked list manipulation
+- DP recursion (memoization)
